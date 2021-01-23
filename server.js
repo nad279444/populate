@@ -10,9 +10,23 @@ const server =  express()
 server.use(bodyParser.json)
 
 //database
-const banks = []
+const banksDB = []
 
 // Bank Model
+class BankModel {
+    constructor ({name,location,branch,phone,address,accountNumber}) {
+                this.name = name,
+                this.location = location,
+                this.branch = branch,
+                this.phone = phone,
+                this.address = address,
+                this.accountNumber = accountNumber
+    }
+    save(){
+        banksDB.push(this)
+        return this
+    }
+}
 
 
 //controllers
@@ -21,7 +35,12 @@ const displayBanks = (req,res) => {
 }
 
 const createBanks = (req,res) => {
-    //create Banks
+    //create a Bank
+    const {name,location,branch,phone,address,accountNumber}  = req.body
+
+    const bank = BankModel({name,location,branch,phone,address,accountNumber})
+
+    bank.save()
 }
 
 const updateBanks = () => {
