@@ -3,10 +3,13 @@ const mongoose = require('mongoose')
 const{ Schema } = mongoose
 
 const bankSchema = new Schema({
-    _id: {type: Schema.Types.ObjectId},
+    accounts:{
+        type: Schema.Types.ObjectId,
+        ref: "Account"
+      },
     location:String,
     branch: String,
-    accounts:[{ type: Schema.Types.ObjectId,ref: Account}]
+    
     
 })
 
@@ -15,10 +18,10 @@ const accountSchema = new Schema({
     phone: Number,
     address:String,
     accountNumber:Number,
-    bankId: [{
+    bankId: {
         type: Schema.Types.ObjectId,
-        ref: 'Bank'
-    }]
+        ref: "Bank"
+    }
 })
 
 const Bank = mongoose.model('Bank', bankSchema)
