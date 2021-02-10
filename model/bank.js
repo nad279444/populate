@@ -5,7 +5,8 @@ const{ Schema } = mongoose
 const bankSchema = new Schema({
     _id: {type: Schema.Types.ObjectId},
     location:String,
-     branch: String,
+    branch: String,
+    accounts:[{ type: Schema.Types.ObjectId,ref: Account}]
     
 })
 
