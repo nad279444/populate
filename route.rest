@@ -1,0 +1,15 @@
+
+POST http://localhost:3000/bank
+Content-Type: application/json
+
+{
+    
+    "name": "umb",
+    "location": "accra",
+    "branch": "teshie",
+    "phone": "3456789",
+    "address": "p.o.box 233",
+    "accountNumber": "2334456",
+    
+
+}

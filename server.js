@@ -1,72 +1,33 @@
+const  mongoose = require("mongoose")
 const express = require('express')
 const bodyParser = require('body-parser')
-
-
-
-//server using express
+const {displayBanks,createBanks,updateBanks,deleteBanks} = require('./controllers/bankController')
+const {createNewAccounts,retrieveAccounts} = require("./controllers/accountControllers")
 const server =  express()
 
 //middlewares
-server.use(bodyParser.json)
-
-//database
-const banksDB = []
-
-// Bank Model
-class BankModel {
-    constructor ({name,location,branch,phone,address,accountNumber}) {
-                this.name = name,
-                this.location = location,
-                this.branch = branch,
-                this.phone = phone,
-                this.address = address,
-                this.accountNumber = accountNumber
-    }
-    save(){
-        banksDB.push(this)
-        return this
-    }
-}
+server.use(bodyParser.json())
 
 
-//controllers
-const displayBanks = (req,res) => {
- //list all banks
-}
 
-const createBanks = (req,res) => {
-    //create a Bank
-    const {name,location,branch,phone,address,accountNumber}  = req.body
+mongoose.connect("mongodb+srv://nad:kawhi002@cluster0.r4xbj.mongodb.net/Bank", {useNewUrlParser: true, useUnifiedTopology: true});
 
-    const bank = BankModel({name,location,branch,phone,address,accountNumber})
 
-    bank.save()
-}
-
-const updateBanks = () => {
-    //updateBanks
-}
-
-const deleteBanks = () => {
-    //delete banks
-}
-//routes
-//view banks
- server.get('/banks',displayBanks)
+server.get('/bank',displayBanks)
 
 //create a banks
- server.post('/banks',createBanks)
+server.post('/bank',createBanks)
 
 //update a banks
- server.put('/banks', updateBanks)
+server.put('/bank/:id', updateBanks)
 
 //delete a banks
-  server.delete('/banks', deleteBanks)
+server.delete('/bank/:id', deleteBanks)
+
+//routes for accounts
+server.post('/bank/account',createNewAccounts)
+server.get('/bank/account',retrieveAccounts)
+//server using express
 
 
-
-
-
-
-//start server
 server.listen(3000,() => console.log('server is ready'))
