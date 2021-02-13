@@ -3,8 +3,8 @@ const {Account} = require('../model/bank')
 const createNewAccounts =  async (req,res) => {
     //create new Account
     try{
-     const {name,phone,address,accountNumber} = req.body
-     const account = new Account({name,phone,address,accountNumber})
+     const {name,phone,address,accountNumber, bankId} = req.body
+     const account = new Account({name,phone,address,accountNumber, bankId})
      savedAccount = await account.save()
      res.json({message: "create successful", data: savedAccount})
     }catch(err){
@@ -17,7 +17,8 @@ const createNewAccounts =  async (req,res) => {
 const retrieveAccounts = async(req,res) => {
     //retrieve all accounts
     try{
-        const retrievedAllAccounts = await Account.find({}).populate('bankId')
+        const retrievedAllAccounts = await Account.find({}).
+        populate('bankId');
         res.json(retrievedAllAccounts) 
     }catch(err){
         res.json({message: err})
