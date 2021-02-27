@@ -1,4 +1,5 @@
-const {Account} = require('../model/bank')
+const {Account} = require('../model/account')
+const {validationResult} = require('express-validator')
 
 const createNewAccounts =  async (req,res) => {
     //create new Account
@@ -7,8 +8,11 @@ const createNewAccounts =  async (req,res) => {
      const account = new Account({name,phone,address,accountNumber, bankId})
      savedAccount = await account.save()
      res.json({message: "create successful", data: savedAccount})
-    }catch(err){
-      res.json({message: err})
+    }catch{
+        const errors = validationResult(req)
+        if(!errors.isEmpty())
+        return res.status(400).json({ errors: errors.array() });
+      
     }
     
     

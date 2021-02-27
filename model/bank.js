@@ -13,22 +13,11 @@ const bankSchema = new Schema({
     
 })
 
-const accountSchema = new Schema({
-    name: String,
-    phone: Number,
-    address:String,
-    accountNumber:Number,
-    bankId: {
-        type: Schema.Types.ObjectId,
-        ref: "Bank"
-    }
-})
+
 
 const Bank = mongoose.model('Bank', bankSchema)
-const Account = mongoose.model('Account', accountSchema)
 
-
-module.exports = {Bank,Account}
+module.exports = {Bank}
 
 
 
