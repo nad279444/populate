@@ -15,7 +15,10 @@ const createNewUsers = async (req, res) => {
 
     const newUser = new User({ username, email, password: hash });
     savedUser = await newUser.save();
-    res.json({ message: "create succesfull user", data: {username:savedUser.username,email:savedUser.email} });
+    res.json({
+      message: "create successful user",
+      data: { username: savedUser.username, email: savedUser.email },
+    });
   } catch (error) {
     res.json({ error });
   }
