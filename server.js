@@ -3,6 +3,7 @@ const express = require('express')
 const accountRouter = require('./routes/accountRoutes')
 const bankRouter = require('./routes/bankRoutes')
 const signupRouter = require("./routes/signupRoutes")
+const loginRouter = require('./routes/loginRoutes')
 
 
 
@@ -16,6 +17,7 @@ server.use(bodyParser.json())
 server.use(accountRouter)
 server.use(bankRouter)
 server.use(signupRouter)
+server.use(loginRouter)
 
 
 

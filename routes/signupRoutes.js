@@ -9,7 +9,7 @@ const { User } = require("../model/user")
 const {createNewUsers,getAllUsers} = require("../controllers/userController")
 
 //routes for users
-router.post('/users',[
+router.post('/signup',[
 body('username'),
 body('email').custom(async (email) => {
   const user = await User.findOne({email})
